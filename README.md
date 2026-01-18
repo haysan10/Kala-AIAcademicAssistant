@@ -61,6 +61,17 @@ Before you submit, Kala can generate a **Quiz** based on your assignment topic t
 - **AI Service**: [xAI Grok API](https://grok.x.ai) (via Vercel AI SDK)
 - **Deployment**: Vercel (PHP Runtime)
 
+## 🗺️ Future Roadmap
+
+We are actively developing Kala to become a true **AI Academic Companion**. Upcoming major features (MVP Phase 2) include:
+
+1.  📁 **Smart Study Materials Manager**: Centralized hub for lecture slides and readings, auto-tagged by AI.
+2.  🧠 **Multi-AI Smart Router**: Intelligent switching between Groq (Speed), Gemini (Documents), and Grok (Reasoning) to optimize performance and cost.
+3.  📅 **AI Study Session Planner**: Auto-scheduling study blocks based on your energy levels and deadlines.
+
+> 👉 **[View Detailed Roadmap](./docs/ROADMAP.md)**
+
+
 ## 🚀 Getting Started
 
 ### Prerequisites
