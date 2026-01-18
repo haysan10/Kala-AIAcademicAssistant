@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🎬 PHASE 1: BASE LAYER
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@layer base {
+    * {
+        @apply border-surface-light-border dark:border-surface-dark-border;
+    }
+
+    html {
+        @apply antialiased;
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    }
+
+    body {
+        @apply bg-surface-light-300 dark:bg-surface-dark-300 text-slate-900 dark:text-white/90 transition-colors duration-500;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* Film Grain Overlay - Subtle Cinematic Texture */
+    body::before {
+        content: "";
+        @apply fixed inset-0 pointer-events-none opacity-[0.015] dark:opacity-[0.02] z-[9999];
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🎨 PHASE 2: COMPONENT UTILITIES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@layer components {
+
+    /* ─────────────────────────────────────────────
+       🎴 Card System
+       ───────────────────────────────────────────── */
+    .card {
+        @apply relative overflow-hidden;
+        @apply bg-surface-light-100 dark:bg-surface-dark-100;
+        @apply border border-surface-light-border dark:border-surface-dark-border;
+        @apply rounded-phi-lg shadow-soft dark:shadow-none;
+        @apply transition-all duration-300;
+    }
+
+    .card:hover {
+        @apply shadow-soft-lg border-kala-500/20;
+    }
+
+    .dark .card:hover {
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.08);
+    }
+
+    .card-glass {
+        @apply card backdrop-blur-cinematic;
+        @apply bg-white/60 dark:bg-surface-dark-100/60;
+    }
+
+    /* ─────────────────────────────────────────────
+       🔘 Button System
+       ───────────────────────────────────────────── */
+    .btn {
+        @apply inline-flex items-center justify-center gap-2;
+        @apply px-phi-md py-phi-sm rounded-phi-md;
+        @apply font-medium text-sm tracking-wide;
+        @apply transition-all duration-300;
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+        @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    }
+
+    .btn-primary {
+        @apply btn;
+        @apply bg-gradient-to-r from-kala-700 to-kala-900;
+        @apply text-white shadow-lg shadow-kala-500/20;
+        @apply hover:shadow-xl hover:shadow-kala-500/30;
+        @apply hover:scale-[1.02] active:scale-[0.98];
+        @apply focus:ring-kala-500;
+    }
+
+    .btn-secondary {
+        @apply btn;
+        @apply bg-slate-100 dark:bg-white/5 text-slate-700 dark:text-white/80;
+        @apply border border-slate-200 dark:border-white/10;
+        @apply hover:bg-slate-200 dark:hover:bg-white/10;
+        @apply hover:border-kala-500/30;
+        @apply focus:ring-slate-400 dark:focus:ring-white/20;
+    }
+
+    .btn-outline {
+        @apply btn;
+        @apply bg-transparent border-2 border-kala-500;
+        @apply text-kala-600 dark:text-kala-400;
+        @apply hover:bg-kala-500 hover:text-white;
+        @apply focus:ring-kala-500;
+    }
+
+    .btn-ghost {
+        @apply btn;
+        @apply bg-transparent text-slate-600 dark:text-white/60;
+        @apply hover:bg-slate-100 dark:hover:bg-white/5;
+        @apply hover:text-slate-900 dark:hover:text-white;
+    }
+
+    /* ─────────────────────────────────────────────
+       📝 Form Inputs
+       ───────────────────────────────────────────── */
+    .input {
+        @apply w-full px-phi py-phi-sm rounded-phi-md;
+        @apply bg-white dark:bg-surface-dark-200;
+        @apply border border-slate-200 dark:border-white/10;
+        @apply text-slate-900 dark:text-white;
+        @apply placeholder:text-slate-400 dark:placeholder:text-white/30;
+        @apply transition-all duration-300;
+        @apply focus:outline-none focus:ring-2 focus:ring-kala-500 focus:border-kala-500;
+    }
+
+    .input:focus {
+        box-shadow: 0 0 0 4px rgba(115, 115, 115, 0.1);
+    }
+
+    /* ─────────────────────────────────────────────
+       📊 Badge System
+       ───────────────────────────────────────────── */
+    .badge {
+        @apply inline-flex items-center gap-1 px-phi-sm py-1;
+        @apply rounded-full text-xs font-medium;
+        @apply border transition-all duration-200;
+    }
+
+    .badge-success {
+        @apply badge bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-white border-slate-200 dark:border-white/20;
+    }
+
+    .badge-warning {
+        @apply badge bg-slate-50 dark:bg-white/5 text-slate-600 dark:text-white/70 border-slate-200 dark:border-white/10;
+    }
+
+    .badge-danger {
+        @apply badge bg-slate-950 dark:bg-white text-white dark:text-black border-transparent shadow-sm;
+    }
+
+    .badge-info {
+        @apply badge bg-kala-500/10 text-kala-700 dark:text-kala-300 border-kala-500/20;
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ✨ PHASE 3: CUSTOM UTILITIES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+@layer utilities {
+
+    /* Text Gradients */
+    .text-gradient {
+        @apply bg-gradient-to-r from-kala-700 via-kala-500 to-kala-300;
+        @apply bg-clip-text text-transparent;
+    }
+
+    .text-gradient-subtle {
+        @apply bg-gradient-to-r from-slate-700 to-slate-900 dark:from-white dark:to-white/70;
+        @apply bg-clip-text text-transparent;
+    }
+
+    /* Glow Effects */
+    .glow-kala {
+        @apply shadow-glow;
+    }
+
+    .glow-kala-lg {
+        @apply shadow-glow-lg;
+    }
+
+    /* Scrollbar Styling */
+    .scrollbar-thin::-webkit-scrollbar {
+        @apply w-1.5 h-1.5;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        @apply bg-slate-300 dark:bg-white/10 rounded-full;
+        @apply hover:bg-slate-400 dark:hover:bg-white/20;
+    }
+
+    /* Page Transition */
+    .page-enter {
+        @apply animate-reveal;
+    }
+
+    /* Skeleton Loading */
+    .skeleton {
+        @apply animate-pulse bg-slate-200 dark:bg-white/5 rounded;
+    }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   🎯 PHASE 4: INERTIA PAGE TRANSITIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+.page {
+    @apply min-h-screen;
+}
